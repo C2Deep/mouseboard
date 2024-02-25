@@ -30,11 +30,11 @@ int create_keyboard_device(void);                     // Virtual keyboard
 void emit(int fd, int type, int code, int val);       // Emit mouse events
 char *find_device(char *deviceName);                  // Find device event file
 char mouse_status(struct input_event *pEvent);        // Mouse buttons and movement status
-void mouse_control(int fd, char mouseStatus, struct input_event *pEvent);   // Emit the new
+void mouse_control(int fd, char mouseStatus, struct input_event *pEvent);  // Control the mouse pointer movement, emulate buttons and wheel
 int mouse_speed(struct input_event *pEvent);          // Update the speed of the mouse value
-void wait_keys_release(int KBfd);                     // Wait till none of keyboard keys is pressed
-void mouse_config(char *cmdArg, char *kbPath);        // Custom mouse configuration (buttons wheel and movement keys)
-void default_config(void);                            // Default mouse configuration
+void wait_keys_release(int KBfd);                     // Wait till none of keyboard keys is in depressed state
+void mouse_config(char *cmdArg, char *kbPath);        // Customize mouse configuration (buttons, wheel and movement keys)
+void default_config(void);                            // Set default mouse configuration
 void terminal_echo(int echoStatus);                   // Control terminal echo
 int flush_KB(int KBfd, char *kbPath);                 // Flush the non written unwanted keys
 void key_id(int code, char* key);                     // Convert key keycode to text
@@ -52,7 +52,7 @@ struct MouseSpeedConfigure
 
 struct MouseButtonsConfigure
 {
-    // Hold key codes
+    // Hold keycodes
     int up;
     int down;
     int right;
@@ -80,7 +80,7 @@ struct Configure
     struct MouseButtonsConfigure mbc;
 }cfg;
 
-// The main() and write_KBevent() communicate using EventShare structure
+// The main() and the thread function write_KBevent() communicate using EventShare structure
 struct EventShare
 {
     struct input_event events[EVENTS_BUFFER];    // Hold mouse control keys
@@ -357,7 +357,7 @@ char mouse_status(struct input_event *pEvent)
 // Call                 : emit()
 // Called by            : main()
 // Return               : void
-// Description          : Control the mouse movement, buttons and wheel
+// Description          : Control the mouse pointer movement, emulate buttons and wheel
 
 void mouse_control(int fd, char mStat, struct input_event *pEvent)
 {
@@ -1046,7 +1046,7 @@ void *write_KBevent(void *kbPath)
 // Call             : printf(), exit()
 // Called by        : main()
 // Return           : void
-// Description      : simple help message to use the program
+// Description      : Simple help message to use the program
 void help(char *cmdArg)
 {
     printf("\nUsage : sudo %s [options]\n\n", cmdArg);
