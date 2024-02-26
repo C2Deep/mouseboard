@@ -34,7 +34,7 @@ __or__
 sudo ./mouseboard --config
 ```
 > [!NOTE]
-> the new configuration saved in ```mouseboard.cfg``` file in binary form.
+> the new configuration saved in ```mouse.cfg``` file in binary form.
 
 ## Run with default configuration
 
