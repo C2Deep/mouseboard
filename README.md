@@ -58,7 +58,7 @@ sudo ./mouseboard --default
 | RIGHT         | ➡ RIGHT ARROW  |
 
 ## Default mouse buttons keyboard keys
-| Buttons       | key      |
+| Button        | key      |
 | --------------| ---------|
 | RIGHT BUTTON  | KPENTER  |
 | LEFT BUTTON   | KP0      |
