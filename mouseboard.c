@@ -529,11 +529,14 @@ void mouse_config(char *cmdArg, char *kbPath)
     char key[MAX_KEY];
     int maxSpeedMAX = 0,
         maxSpeedMIN = 3000,
-        minSpeedMAX = 10000,
-        minSpeedMIN = 1000;
+        minSpeedMAX = 30000,
+        minSpeedMIN = 5000;
 
-    // Configuration file doesn't exist .. go with the default configuration
-    if((MCfd = open("mouse.cfg", O_RDONLY)) < 0)
+    /// If you want to go with the defaults or the configuration file doesn't exist .. go with the default configuration
+    if(
+        ((MCfd = open("mouseboard.cfg", O_RDONLY)) < 0) ||
+        ( cmdArg && ( !(strcmp("-D", cmdArg)) || !(strcmp("--default", cmdArg)) ) )
+     )
         default_config();
     else
     {
@@ -547,12 +550,8 @@ void mouse_config(char *cmdArg, char *kbPath)
     }
 
     if(
-        cmdArg &&
-        (
-            (strcmp("--config", cmdArg) == 0) ||
-            (strcmp("-C", cmdArg) == 0)
-        )
-     )
+        cmdArg && ( !(strcmp("--config", cmdArg)) || !(strcmp("-C", cmdArg)) )
+      )
     {
 
         if((KBfd = open(kbPath, O_RDONLY)) < 0)
@@ -729,11 +728,11 @@ void mouse_config(char *cmdArg, char *kbPath)
 
 void default_config(void)
 {
-    cfg.msc.maxSpeed = 700;
-    cfg.msc.minSpeed = 10000;
-    cfg.msc.acc = 2.5;
+    cfg.msc.maxSpeed = 701;
+    cfg.msc.minSpeed = 10007;
+    cfg.msc.acc = 3.14;
 
-    // Key Codes
+    // Key codes
     cfg.mbc.up = 0x67;       // Up arrow
     cfg.mbc.down = 0x6c;     // Down arrow
     cfg.mbc.right = 0x6a;    // Right arrow
@@ -744,7 +743,7 @@ void default_config(void)
     cfg.mbc.scrollUp = 0x48;     // "8" Keypad
     cfg.mbc.scrollDown = 0x50;   // "2" Keypad
 
-    // Scan Codes
+    // Scan codes
     cfg.mbc.ups = 0xc8;       // Up arrow
     cfg.mbc.downs = 0xd0;     // Down arrow
     cfg.mbc.rights = 0xcd;    // Right arrow
@@ -1049,8 +1048,9 @@ void *write_KBevent(void *kbPath)
 // Description      : Simple help message to use the program
 void help(char *cmdArg)
 {
-    printf("\nUsage : sudo %s [options]\n\n", cmdArg);
-    printf("\n -C, --config          Configure mouse\n");
+    printf("\nUsage : sudo %s [options]\n", cmdArg);
+    printf("\n -C, --config          Edit Configuration");
+    printf("\n -D, --default         Run with the default configuration\n");
     printf(" -h, --help            help message\n\n");
     exit(0);
 }
