@@ -588,9 +588,9 @@ void mouse_config(char *cmdArg, char *kbPath)
 
             printf("MOUSE SPEED:\n");
             printf("-----------\n\n");
-            printf("09- Max speed     (%d - %d)     ----> [%d]\n", maxSpeedMAX, maxSpeedMIN, cfg.msc.maxSpeed);
+            printf("09- Max speed     (%d - %d)         ----> [%d]\n", maxSpeedMAX, maxSpeedMIN, cfg.msc.maxSpeed);
             printf("10- Minimum speed (%d - %d)     ----> [%d]\n", minSpeedMIN, minSpeedMAX, cfg.msc.minSpeed);
-            printf("11- Acceleration  ( > 0.00)     ----> [%.2f]\n\n", cfg.msc.acc);
+            printf("11- Acceleration  ( > 0.00)          ----> [%.2f]\n\n", cfg.msc.acc);
 
             printf("00- Quit\n\n\n");
             printf("Choose the line number of the key/value want to change (0-11): ");
