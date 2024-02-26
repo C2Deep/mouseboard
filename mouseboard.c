@@ -534,7 +534,7 @@ void mouse_config(char *cmdArg, char *kbPath)
 
     /// If you want to go with the defaults or the configuration file doesn't exist .. go with the default configuration
     if(
-        ((MCfd = open("mouseboard.cfg", O_RDONLY)) < 0) ||
+        ((MCfd = open("mouse.cfg", O_RDONLY)) < 0) ||
         ( cmdArg && ( !(strcmp("-D", cmdArg)) || !(strcmp("--default", cmdArg)) ) )
      )
         default_config();
