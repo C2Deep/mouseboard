@@ -7,8 +7,9 @@ Have full control over mouse pointer and move it smoothly using keyboard.
   ```Linux```
 
 # Features
-- __Percision__ Non continuous presses to one or more of direction keys for precise mouse movement.
-- __Acceleration__ Control mouse acceleration by simply keep pressing one or more of the direction keys (the longer you press the faster mouse pointer goes).
+- __Precision__ Non continuous presses to one or more of direction keys for precise mouse movement.<br>
+For more precise movement increse the ```Minimum speed``` to a higher value.
+- __Acceleration__ Control mouse acceleration by simply keep pressing one or more of the direction keys (the longer you press the faster mouse pointer goes). 
 - Move mouse pointer in two directions simultaneously.
 - Customize the mouse speed, acceleration and keyboard keys to control the mouse.
 - Return the functionality of the keyboard keys assigned to mouse control once the program terminated.
@@ -67,9 +68,9 @@ sudo ./mouseboard --default
 *KP stand for keypad
 
 ## Default mouse speeds and acceleration
-- Minimum speed (Start speed)---------[10000]
-- Max speed (End speed)-------------------[700]
-- Acceleration-----------------------------------[2.00]
+- Minimum speed (Start speed)---------[10007]
+- Max speed (End speed)-------------------[701]
+- Acceleration-----------------------------------[3.14]
   
 > [!NOTE]
 > * The lower the speed number the faster the mouse goes and vice versa.
