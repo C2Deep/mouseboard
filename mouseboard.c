@@ -518,7 +518,7 @@ void wait_keys_release(int KBfd)
 // Called by            : main()
 // Return               : void
 // Description          : Assign 8 keys (default or custom) from the keyboard to control the virtual mouse device
-//                        and set the max, min and acceleration values to control the mouse pointer speed
+//                        and set the max and minimum speeds and acceleration values to control the mouse pointer speed
 //                        if mouse.cfg file not exist then the program starts with the default configuration
 void mouse_config(char *cmdArg, char *kbPath)
 {
@@ -532,7 +532,7 @@ void mouse_config(char *cmdArg, char *kbPath)
         minSpeedMAX = 30000,
         minSpeedMIN = 5000;
 
-    /// If you want to go with the defaults or the configuration file doesn't exist .. go with the default configuration
+    // If you want to go with the defaults or the configuration file doesn't exist
     if(
         ((MCfd = open("mouse.cfg", O_RDONLY)) < 0) ||
         ( cmdArg && ( !(strcmp("-D", cmdArg)) || !(strcmp("--default", cmdArg)) ) )
@@ -733,26 +733,26 @@ void default_config(void)
     cfg.msc.acc = 3.14;
 
     // Key codes
-    cfg.mbc.up = 0x67;       // Up arrow
-    cfg.mbc.down = 0x6c;     // Down arrow
-    cfg.mbc.right = 0x6a;    // Right arrow
-    cfg.mbc.left = 0x69;     // Left arrow
+    cfg.mbc.up = 0x67;       // Up arrow key code
+    cfg.mbc.down = 0x6c;     // Down arrow key code
+    cfg.mbc.right = 0x6a;    // Right arrow key code
+    cfg.mbc.left = 0x69;     // Left arrow key code
 
-    cfg.mbc.rBtn = 0x60;         // "Enter" keypad
-    cfg.mbc.lBtn = 0x52;         // "0" Keypad
-    cfg.mbc.scrollUp = 0x48;     // "8" Keypad
-    cfg.mbc.scrollDown = 0x50;   // "2" Keypad
+    cfg.mbc.rBtn = 0x60;         // "Enter" keypad key code
+    cfg.mbc.lBtn = 0x52;         // "0" Keypad key code
+    cfg.mbc.scrollUp = 0x48;     // "8" Keypad key code
+    cfg.mbc.scrollDown = 0x50;   // "2" Keypad key code
 
     // Scan codes
-    cfg.mbc.ups = 0xc8;       // Up arrow
-    cfg.mbc.downs = 0xd0;     // Down arrow
-    cfg.mbc.rights = 0xcd;    // Right arrow
-    cfg.mbc.lefts = 0xcb;     // Left arrow
+    cfg.mbc.ups = 0xc8;       // Up arrow scan code
+    cfg.mbc.downs = 0xd0;     // Down arrow scan code
+    cfg.mbc.rights = 0xcd;    // Right arrow scan code
+    cfg.mbc.lefts = 0xcb;     // Left arrow scan code
 
-    cfg.mbc.rBtns = 0x9c;         // "Enter" keypad
-    cfg.mbc.lBtns = 0x52;         // "0" Keypad
-    cfg.mbc.scrollUps = 0x48;     // "8" Keypad
-    cfg.mbc.scrollDowns = 0x50;   // "2" Keypad
+    cfg.mbc.rBtns = 0x9c;         // "Enter" keypad scan code
+    cfg.mbc.lBtns = 0x52;         // "0" Keypad scan code
+    cfg.mbc.scrollUps = 0x48;     // "8" Keypad scan code
+    cfg.mbc.scrollDowns = 0x50;   // "2" Keypad scan code
 }
 
 
@@ -943,7 +943,7 @@ void clear_screen(void)
 //                    write(), printf(), close()
 // Called by        : main() *as a thread*
 // Return           : void
-// Description      : Grap every key event from the original keyboard device if key event is one of the "keyboard mouse keys"
+// Description      : Grap all key events from the original keyboard device. If key event is one of the "keyboard mouse keys"
 //                    then let it to be processed by main() else write the key event to the virtual keyboard
 
 void *write_KBevent(void *kbPath)
