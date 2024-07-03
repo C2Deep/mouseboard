@@ -66,12 +66,3 @@ sudo ./mouseboard --default
 | WHEEL DOWN    | KP2      |
 
 *KP stand for keypad
-
-## Default mouse speeds and acceleration
-- Minimum speed (Start speed)----------[10007]
-- Max speed (End speed)-------------------[701]
-- Acceleration-----------------------------------[3.14]
-  
-> [!NOTE]
-> * The lower the speed value the faster the mouse goes and vice versa.
-> * The lower the acceleration value is the faster mouse accelerate.
